@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello-world-shmaks
+spec:
+  schedule: "*/5 * * * *"
+  concurrencyPolicy: Allow
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      backoffLimit: 5
+      activeDeadlineSeconds: 60
+      template:
+        spec:
+          containers:
+          - name: helloer
+            image: busybox
+            args:
+            - /bin/sh
+            - -c
+            - echo Hello world!
+          restartPolicy: Never

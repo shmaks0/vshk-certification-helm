@@ -3,7 +3,17 @@ entries:
   vshk-certification:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-01-23T13:27:17.089918+03:00"
+    created: "2022-01-24T21:39:20.809133+03:00"
+    description: Vshk-Certification Helm chart for Kubernetes
+    digest: 6d8a9a671e4f4d2cf978b7e07f3a8be6295734a8033f59e0a7c27c463c45dff5
+    name: vshk-certification
+    type: application
+    urls:
+    - https://shmaks0.github.io/vshk-certification-helm/vshk-certification-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2022-01-24T21:39:20.808611+03:00"
     description: Vshk-Certification Helm chart for Kubernetes
     digest: 14c8a81f5cad01f6cc22a18986bcc1b0a07887971a2ad0ee335e045664a3314c
     name: vshk-certification
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://shmaks0.github.io/vshk-certification-helm/vshk-certification-0.0.1.tgz
     version: 0.0.1
-generated: "2022-01-23T13:27:17.086567+03:00"
+generated: "2022-01-24T21:39:20.807893+03:00"
