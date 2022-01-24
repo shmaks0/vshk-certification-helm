@@ -11,7 +11,7 @@ type: "Opaque"
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.2
+    helm.sh/chart: vshk-certification-0.0.3
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -26,7 +26,7 @@ kind: ConfigMap
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.2
+    helm.sh/chart: vshk-certification-0.0.3
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -42,7 +42,7 @@ kind: Service
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.2
+    helm.sh/chart: vshk-certification-0.0.3
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -64,7 +64,7 @@ kind: Deployment
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.2
+    helm.sh/chart: vshk-certification-0.0.3
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -166,7 +166,8 @@ metadata:
   name: hello-world-shmaks
 spec:
   schedule: "*/5 * * * *"
-  concurrencyPolicy: Allow
+  concurrencyPolicy: Replace
+  startingDeadlineSeconds: 20
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 1
   jobTemplate:
@@ -177,6 +178,13 @@ spec:
         spec:
           containers:
           - name: helloer
+            resources: 
+              limits:
+                cpu: 100m
+                memory: 128Mi
+              requests:
+                cpu: 100m
+                memory: 128Mi
             image: busybox
             args:
             - /bin/sh
@@ -190,7 +198,7 @@ kind: Ingress
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.2
+    helm.sh/chart: vshk-certification-0.0.3
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -216,7 +224,7 @@ kind: Pod
 metadata:
   name: "vshk-local-vshk-certification-test-connection"
   labels:
-    helm.sh/chart: vshk-certification-0.0.2
+    helm.sh/chart: vshk-certification-0.0.3
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"

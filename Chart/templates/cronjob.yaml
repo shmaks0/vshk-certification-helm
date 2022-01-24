@@ -4,7 +4,8 @@ metadata:
   name: hello-world-shmaks
 spec:
   schedule: "*/5 * * * *"
-  concurrencyPolicy: Allow
+  concurrencyPolicy: Replace
+  startingDeadlineSeconds: 20
   successfulJobsHistoryLimit: 2
   failedJobsHistoryLimit: 1
   jobTemplate:
@@ -15,6 +16,13 @@ spec:
         spec:
           containers:
           - name: helloer
+            resources: 
+              limits:
+                cpu: 100m
+                memory: 128Mi
+              requests:
+                cpu: 100m
+                memory: 128Mi
             image: busybox
             args:
             - /bin/sh
