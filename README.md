@@ -11,7 +11,7 @@ type: "Opaque"
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.1
+    helm.sh/chart: vshk-certification-0.0.2
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -26,7 +26,7 @@ kind: ConfigMap
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.1
+    helm.sh/chart: vshk-certification-0.0.2
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -42,7 +42,7 @@ kind: Service
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.1
+    helm.sh/chart: vshk-certification-0.0.2
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -64,7 +64,7 @@ kind: Deployment
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.1
+    helm.sh/chart: vshk-certification-0.0.2
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -159,13 +159,38 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 20
 ---
+# Source: vshk-certification/templates/cronjob.yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello-world-shmaks
+spec:
+  schedule: "*/5 * * * *"
+  concurrencyPolicy: Allow
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      backoffLimit: 5
+      activeDeadlineSeconds: 60
+      template:
+        spec:
+          containers:
+          - name: helloer
+            image: busybox
+            args:
+            - /bin/sh
+            - -c
+            - echo Hello world!
+          restartPolicy: Never
+---
 # Source: vshk-certification/templates/ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.1
+    helm.sh/chart: vshk-certification-0.0.2
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -191,7 +216,7 @@ kind: Pod
 metadata:
   name: "vshk-local-vshk-certification-test-connection"
   labels:
-    helm.sh/chart: vshk-certification-0.0.1
+    helm.sh/chart: vshk-certification-0.0.2
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -205,4 +230,5 @@ spec:
       command: ['wget']
       args: ['vshk-local-vshk-certification:80']
   restartPolicy: Never
+
 ```
