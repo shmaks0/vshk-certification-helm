@@ -1,6 +1,6 @@
 # Sample command to work with chart
 - helm repo add shmaks-vshk-certification https://shmaks0.github.io/vshk-certification-helm 
-- helm template vshk-local shmaks-vshk-certification/vshk-certification --set image.repository=vshk-local --set image.tag=latest-dev --set image.pullSecret=local-gitlab-registry --set db.host=postgresql --set db.port=5432 --set db.name=postgresql --set db.user=postgres --set db.password=postgres --set ingress.host=vshk-certification.minikube.slurm.io
+- helm template vshk-local shmaks-vshk-certification/vshk-certification --set image.repository=vshk-local --set image.tag=latest-dev --set image.pullSecret=local-gitlab-registry --set db.host=postgresql --set db.port=5432 --set db.name=postgresql --set db.user=postgres --set db.password=postgres --set ingress.host=vshk-certification.minikube.slurm.io --set pv.enabled=true --set pv.server=10.0.0.1 --set pv.path=/local/local-nfs
 - output:
 ```
 ---
@@ -11,7 +11,7 @@ type: "Opaque"
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.3
+    helm.sh/chart: vshk-certification-0.0.4
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -26,7 +26,7 @@ kind: ConfigMap
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.3
+    helm.sh/chart: vshk-certification-0.0.4
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -36,13 +36,33 @@ data:
   db_port: "5432"
   db_name: "postgresql"
 ---
+# Source: vshk-certification/templates/pv.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: vshk-local-vshk-certification-pv
+spec:
+  accessModes:
+    - ReadWriteMany
+  mountOptions:
+    - hard
+    - nfsvers=4.0
+    - timeo=60
+    - retrans=10
+  capacity:
+    storage: 10Gi
+  nfs:
+    server: "10.0.0.1"
+    path: "/local/local-nfs"
+  persistentVolumeReclaimPolicy: "Recycle"
+---
 # Source: vshk-certification/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.3
+    helm.sh/chart: vshk-certification-0.0.4
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -64,7 +84,7 @@ kind: Deployment
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.3
+    helm.sh/chart: vshk-certification-0.0.4
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -198,7 +218,7 @@ kind: Ingress
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.3
+    helm.sh/chart: vshk-certification-0.0.4
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -224,7 +244,7 @@ kind: Pod
 metadata:
   name: "vshk-local-vshk-certification-test-connection"
   labels:
-    helm.sh/chart: vshk-certification-0.0.3
+    helm.sh/chart: vshk-certification-0.0.4
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"

@@ -61,6 +61,11 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+pv:
+  enabled: false
+  server: ""
+  path: ""
+
 nodeSelector: {}
 
 tolerations: []

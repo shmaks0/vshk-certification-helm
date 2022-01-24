@@ -1,0 +1,20 @@
+{{- if .Values.pv.enabled }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "vshk-certification.fullname" . }}-pv
+spec:
+  accessModes:
+    - ReadWriteMany
+  mountOptions:
+    - hard
+    - nfsvers=4.0
+    - timeo=60
+    - retrans=10
+  capacity:
+    storage: 10Gi
+  nfs:
+    server: "{{ .Values.pv.server }}"
+    path: "{{ .Values.pv.path }}"
+  persistentVolumeReclaimPolicy: "Recycle"
+{{- end }}
