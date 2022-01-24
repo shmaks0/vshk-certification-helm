@@ -60,30 +60,14 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: vshk-local-vshk-certification-pvc-master
+  name: vshk-local-vshk-certification-pvc
 spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 4Gi
-  volumeName: "vshk-local-vshk-certification-pv"
-  storageClassName: ""
----
-# Source: vshk-certification/templates/pvc.yaml
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: vshk-local-vshk-certification-pvc-replica
-spec:
-  volumeMode: Filesystem
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 4Gi
+      storage: 10Gi
   volumeName: "vshk-local-vshk-certification-pv"
   storageClassName: ""
 ---
