@@ -11,7 +11,7 @@ type: "Opaque"
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.4
+    helm.sh/chart: vshk-certification-0.0.5
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -26,7 +26,7 @@ kind: ConfigMap
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.4
+    helm.sh/chart: vshk-certification-0.0.5
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -56,13 +56,44 @@ spec:
     path: "/local/local-nfs"
   persistentVolumeReclaimPolicy: "Recycle"
 ---
+# Source: vshk-certification/templates/pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: vshk-local-vshk-certification-pvc-master
+spec:
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 4Gi
+  volumeName: "vshk-local-vshk-certification-pv"
+  storageClassName: ""
+---
+# Source: vshk-certification/templates/pvc.yaml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: vshk-local-vshk-certification-pvc-replica
+spec:
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 4Gi
+  volumeName: "vshk-local-vshk-certification-pv"
+  storageClassName: ""
+---
 # Source: vshk-certification/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.4
+    helm.sh/chart: vshk-certification-0.0.5
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -84,7 +115,7 @@ kind: Deployment
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.4
+    helm.sh/chart: vshk-certification-0.0.5
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -218,7 +249,7 @@ kind: Ingress
 metadata:
   name: vshk-local-vshk-certification
   labels:
-    helm.sh/chart: vshk-certification-0.0.4
+    helm.sh/chart: vshk-certification-0.0.5
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"
@@ -244,7 +275,7 @@ kind: Pod
 metadata:
   name: "vshk-local-vshk-certification-test-connection"
   labels:
-    helm.sh/chart: vshk-certification-0.0.4
+    helm.sh/chart: vshk-certification-0.0.5
     app.kubernetes.io/name: vshk-certification
     app.kubernetes.io/instance: vshk-local
     app.kubernetes.io/version: "0.0.1"

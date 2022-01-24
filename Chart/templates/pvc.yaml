@@ -1,0 +1,31 @@
+{{- if .Values.pv.enabled }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "vshk-certification.fullname" . }}-pvc-master
+spec:
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 4Gi
+  volumeName: "{{ include "vshk-certification.fullname" . }}-pv"
+  storageClassName: ""
+---
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "vshk-certification.fullname" . }}-pvc-replica
+spec:
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 4Gi
+  volumeName: "{{ include "vshk-certification.fullname" . }}-pv"
+  storageClassName: ""
+{{- end }}

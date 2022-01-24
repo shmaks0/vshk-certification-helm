@@ -3,7 +3,17 @@ entries:
   vshk-certification:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-01-24T22:49:34.51383+03:00"
+    created: "2022-01-24T23:23:28.765809+03:00"
+    description: Vshk-Certification Helm chart for Kubernetes
+    digest: 0fb3e1556816db1ab4499f08da22a41be9597a55000334ed3bd4f566af26296e
+    name: vshk-certification
+    type: application
+    urls:
+    - https://shmaks0.github.io/vshk-certification-helm/vshk-certification-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2022-01-24T23:23:28.76483+03:00"
     description: Vshk-Certification Helm chart for Kubernetes
     digest: 1573d2032fda9d8e9e845c57d631e79970d3562a4cefb9b7f410efb3bda0ec36
     name: vshk-certification
@@ -13,7 +23,7 @@ entries:
     version: 0.0.4
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-01-24T22:49:34.513289+03:00"
+    created: "2022-01-24T23:23:28.763888+03:00"
     description: Vshk-Certification Helm chart for Kubernetes
     digest: bec4b5dfe9dfe74ecb9df079f7687a99b91d0118d203fd25197a3baf68736837
     name: vshk-certification
@@ -23,7 +33,7 @@ entries:
     version: 0.0.3
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-01-24T22:49:34.511439+03:00"
+    created: "2022-01-24T23:23:28.762499+03:00"
     description: Vshk-Certification Helm chart for Kubernetes
     digest: 6d8a9a671e4f4d2cf978b7e07f3a8be6295734a8033f59e0a7c27c463c45dff5
     name: vshk-certification
@@ -33,7 +43,7 @@ entries:
     version: 0.0.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2022-01-24T22:49:34.510667+03:00"
+    created: "2022-01-24T23:23:28.761635+03:00"
     description: Vshk-Certification Helm chart for Kubernetes
     digest: 14c8a81f5cad01f6cc22a18986bcc1b0a07887971a2ad0ee335e045664a3314c
     name: vshk-certification
@@ -41,4 +51,4 @@ entries:
     urls:
     - https://shmaks0.github.io/vshk-certification-helm/vshk-certification-0.0.1.tgz
     version: 0.0.1
-generated: "2022-01-24T22:49:34.509697+03:00"
+generated: "2022-01-24T23:23:28.757162+03:00"
